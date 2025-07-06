@@ -1,0 +1,11 @@
+{
+  "name": "simple_app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild js/app.js --bundle --target=es2017 --outdir=../priv/static/assets"
+  },
+  "devDependencies": {
+    "esbuild": "^0.17.11"
+  }
+}
