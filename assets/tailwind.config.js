@@ -1,8 +1,8 @@
 module.exports = {
   content: [
-    "./js/**/*.js",
-    "../lib/*_web.ex",
-    "../lib/*_web/**/*.*ex"
+    "./js/**/*.{js,jsx,ts,tsx}",
+    "../lib/simple_app_web/**/*.{ex,heex}",
+    "../lib/simple_app_web.ex"
   ],
   theme: {
     extend: {},

@@ -1,7 +1,10 @@
 FROM elixir:latest
 
-# Install build dependencies
-RUN apt-get update && apt-get install -y build-essential git && rm -rf /var/lib/apt/lists/*
+# Install build dependencies including Node.js
+RUN apt-get update && apt-get install -y build-essential git curl && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create app directory
 WORKDIR /app
@@ -29,7 +32,12 @@ COPY priv/ priv/
 COPY lib/ lib/
 COPY assets/ assets/
 
-# Build assets (Tailwind only)
+# Install npm dependencies for React/TypeScript
+WORKDIR /app/assets
+RUN npm install
+
+# Build assets (Tailwind + React/TypeScript)
+WORKDIR /app
 RUN mix assets.deploy
 
 # Compile the project
